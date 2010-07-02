@@ -52,7 +52,6 @@ umask 022
 export LESS="-R"
 
 
-alias wifi='echo 1A7B1EA60F'
 alias rm='nocorrect rm -i'
 alias rmf='nocorrect rm -f'
 alias rmrf='nocorrect rm -fR'
@@ -685,7 +684,7 @@ abbreviations=(
   "st"   'svn status'
   "ss"   'svn status | grep php'
   "t"    'sudo tail -n 100 /var/log/'
-  "conf" "sudo vim /etc/apache2/sites-enabled/Optimum.hosts.conf"
+  "conf" "sudo vim /etc/apache2/sites-enabled/hosts.conf"
   "ssar" "sudo service apache2 restart"
   "sa"   "sudo apachectl start"
   "sar" "sudo service apache2 restart"
