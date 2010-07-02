@@ -1,0 +1,351 @@
+xterm*altSendsEscape: false
+xterm*eightBitInput:   true
+xterm*eightBitOutput:  false
+
+!Xterm*VT100.translations: #override : select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+!xterm*VT100.Translations: #override: <Key>Meta:
+
+! this are Xresources to make xterm look good
+! put into ~/.Xresources
+! after changing contents, run xrdb -merge .Xresources
+! gentoo has a bug so that it doesnt read it when X starts, so add above
+! command to /etc/xfce4/xinitrc (top) and be happy.
+xterm*utf8: 1
+
+xterm*faceName: Liberation Mono
+!xterm*faceName: Terminus
+!xterm*faceName: Droid Sans Mono
+!xterm*faceName: Iconsolata
+!xterm*faceName: Monaco
+xterm*faceSize: 9
+!xterm*termName: xterm-256color
+!xterm*scrollBar:        true
+!xterm*iconPixmap: ...
+!xterm*iconPixmap:       /usr/share/pixmaps/gnome-gemvt.xbm
+!xterm*iconMask:         /usr/share/pixmaps/gnome-gemvt-mask.xbm
+!Mwm*xterm*iconImage: /home/a/a1111aa/xterm.icon
+xterm*loginShell: false
+xterm*geometry: 128x39+0+23
+xterm*allowSendEvents: True
+xterm*sessionMgt: false
+
+!last comment
+*VT100.Translations: #override \
+			  <Key>BackSpace: string(0x7F)\n\
+			  <Key>Delete:    string("\033[3~")\n\
+			  <Key>Home:      string("\033[1~")\n\
+			  <Key>End:       string("\033[4~")
+*ttyModes: erase ^?
+
+
+!  !  !  !  !  !  !  !
+!iMy last theme
+!
+!near black
+!xterm*background:  black
+!xterm*foreground:  #DDDDDD
+!xterm.urlLauncher:   firefox
+!xterm*VT100.background: black
+!!xterm*VT100.foreground: black
+!!Nice dark blue
+!xterm.VT100.color0: #5F7176
+!!xterm.VT100.color1: PaleVioletRed
+!xterm.VT100.color1: Orange
+!!xterm.VT100.color2: DarkGreen
+!xterm.VT100.color2: Green
+!xterm.VT100.color3: LightGoldenrod !
+!xterm.VT100.color4: LightSkyBlue
+!!xterm.VT100.color4: DarkPaleBlue
+!xterm.VT100.color5: LightSalmon
+!! milk color
+!!xterm.VT100.color6: #D6BD94
+!!light yellow
+!xterm.VT100.color6:   #FFFF00
+!!xterm.VT100.color6: Aquamarine
+
+!xterm.VT100.color7: wheat
+!xterm.VT100.color8: Grey
+!xterm.VT100.color9: red
+!!xterm.VT100.color10: DarkGreen
+!xterm.VT100.color10: Green
+!xterm.VT100.color11: yellow
+!!directories in mc for example xterm.VT100.color12: LightSkyBlue
+!!xterm.VT100.color12: DarkBlue
+!xterm.VT100.color12: LightSkyBlue
+!xterm.VT100.color13: DarkRed
+!xterm.VT100.color14: #bbbbbb
+!xterm.VT100.color15: white
+!xterm.VT100.colorBD: white
+!! ocean color
+!!xterm.VT100.colorUL: Turquoise
+!xterm.VT100.colorUL: Orange
+!xterm.VT100.colorULMode: false
+xterm.VT100.cursorColor: LightSlateGreen
+!!xterm.VT100.pointerColor: LightSlateBlue
+!xterm.VT100.pointerColor: Orange
+!!Light yellow
+!xterm.VT100.highlightColor: #F1FFC1
+!new dark theme
+xterm*background:  #000000
+xterm*foreground:  #eeeeee
+xterm*color0:      #000000
+! fire red
+xterm*color1:      #D22717
+! salad green
+!xterm*color2:      #80CE68
+xterm*color2:      #80CE68
+!previous brown now a little bit orange
+!xterm*color3:      #E67109
+xterm*color3:      #FC9503
+! base blue
+xterm*color4:      #4169A1
+! strawberry symlinks
+xterm*color5:      #963c59
+!Dark ocean changed to light ocean
+!(olive)
+!xterm*color6:      #418179
+!xterm*color6:      #599FA3
+xterm*color6:      #82BEC0
+!
+xterm*color7:      #bebebe
+xterm*color8:      #666666
+! Dark pink
+xterm*color9:      #cf6171
+!was lemon changed to middle green
+xterm*color10:     #6FBF35
+!light yellow
+xterm*color11:     #fff796
+! Beautefull heaven blue
+xterm*color12:     #4186be
+!purple pink
+xterm*color13:     #cf9ebe
+! cyan
+xterm*color14:     #71bebe
+xterm*color15:     #ffffff
+
+
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!URxvt settings
+!URxvt.urlLauncher:      firefox
+!urxvt*font: 		xft:Bitstream Vera Sans Mono:pixelsize=9
+!URxvt*boldFont:		xft:Bitstream Vera Sans Mono:pixelsize=9
+!URxvt*italicFont:	xft:segoe ui:pixelsize=9
+!URxvt*bolditalicFont:	xft:Bitstream Vera Sans Mono:pixelsize=9
+!URxvt*scrollBar:	false
+!URxvt*internalBorder:	6
+
+
+!Urxvt.altSendsEscape: true
+!URxvt.background:	#333333
+!URxvt.foreground:	#ffffff
+!URxvt.termName:           string
+!URxvt.geometry:           128x64
+!URxvt.reverseVideo:       boolean
+!URxvt.loginShell:         boolean
+!URxvt.jumpScroll:         boolean
+!URxvt.skipScroll:         boolean
+!URxvt.pastableTabs:       boolean
+!URxvt.scrollstyle:        mode
+!URxvt.scrollBar_right:    boolean
+!URxvt.scrollBar_floating: boolean
+!URxvt.scrollBar_align:    mode
+!URxvt.thickness:          number
+!URxvt.scrollTtyOutput:    boolean
+!URxvt.scrollTtyKeypress:  boolean
+!URxvt.scrollWithBuffer:   boolean
+!URxvt.inheritPixmap:      true
+!URxvt.transparent:        true
+!URxvt.tintColor:          #333333
+!URxvt.shading:            10
+!URxvt.fading:             50
+!URxvt.fadeColor:          #222222
+!URxvt.utmpInhibit:        boolean
+!URxvt.urgentOnBell:       true
+!URxvt.visualBell:         boolean
+!URxvt.mapAlert:           boolean
+!URxvt.meta8:              boolean
+!URxvt.mouseWheelScrollPage:   True
+!URxvt.tripleclickwords:   boolean
+!URxvt.insecure:           boolean
+!URxvt.cursorUnderline:    boolean
+!URxvt.cursorBlink:        true
+!URxvt.pointerBlank:       boolean
+!URxvt.colorBD:            color
+!URxvt.colorIT:            color
+!URxvt.colorUL:            color
+!URxvt.colorRV:            color
+!URxvt.underlineColor:     color
+!URxvt.scrollColor:        color
+!URxvt.troughColor:        color
+!URxvt.highlightColor:     color
+!URxvt.cursorColor:        #afc81c
+!URxvt.cursorColor2:       color
+!URxvt.pointerColor:       #afc81c
+!URxvt.pointerColor2:      color
+!URxvt.borderColor:        color
+!URxvt.intensityStyles:    boolean
+!URxvt.inputMethod:        name
+!URxvt.preeditType:        style
+!URxvt.imLocale:           string
+!URxvt.imFont:             fontname
+!URxvt.title:               URxvt
+!URxvt.iconName:           string
+!URxvt.saveLines:          number
+!URxvt.depth:              number
+!URxvt.transient-for:      windowid
+!URxvt.override-redirect:  boolean
+!URxvt.hold:               boolean
+!URxvt.externalBorder:     number
+!URxvt.internalBorder:     number
+!URxvt.borderLess:         true
+!URxvt.skipBuiltinGlyphs:  boolean
+!URxvt.lineSpace:          number
+!URxvt.pointerBlankDelay:  number
+!URxvt.backspacekey:       string
+!URxvt.deletekey:          string
+!URxvt.selectstyle:        mode
+!URxvt.print-pipe:         string
+!URxvt.modifier:           modifier
+!URxvt.cutchars:           string
+!URxvt.answerbackString:   string
+!URxvt.secondaryScreen:    boolean
+!URxvt.secondaryScroll:    boolean
+!URxvt.perl-lib:           string
+!URxvt.perl-eval:          perl-eval
+!URxvt.perl-ext-common:    string
+!URxvt.perl-ext:           string
+!URxvt.iso14755_52:        boolean
+!URxvt*keysym.sym:         keysym
+
+! ---| xpdf |--- {{{
+xpdf*enableFreetype: yes
+xpdf*antialias: yes
+xpdf*foreground: black
+xpdf*background: white
+xpdf*urlCommand: /usr/bin/firefox %s
+xpdf*viKeys: on
+!}}}
+!Xft.dpi:                        96
+Xft.antialias:                  true
+Xft.hinting:                    true
+Xft.hintstyle:                  hintsfull
+Xft.rgba:                       rgb
+
+
+
+
+
+
+!Yet another theme
+XTerm*background: #000010
+XTerm*foreground: #ffffff
+XTerm*color0: #000000
+XTerm*color1: #9e1828
+XTerm*color2: #aece92
+XTerm*color3: #968a38
+XTerm*color4: #414171
+XTerm*color5: #963c59
+XTerm*color6: #418179
+XTerm*color7: #bebebe
+XTerm*color8: #666666
+XTerm*color9: #cf6171
+XTerm*color10: #c5f779
+XTerm*color11: #fff796
+XTerm*color12: #4186be
+XTerm*color13: #cf9ebe
+XTerm*color14: #71bebe
+XTerm*color15: #ffffff
+XTerm*cursorColor: magenta
+!yeahconsole setup
+! The term looks like
+yeahconsole*xOffset:0
+yeahconsole*screenWidth:1440
+yeahconsole*handleWidth:1
+yeahconsole*handleColor: rgb:8/8/7
+yeahconsole*handleColor.unfocus: rgb:4/4/38
+
+! Its content looks like
+!yeahconsole*background:black
+!yeahconsole*foreground:grey70
+!yeahconsole*font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+!yeahconsole*font: -*-terminus-medium-*-*-*-*-*-100-100-*-*-iso8859-15
+!yeahconsole*faceName: Terminus:pixelsize=12:antialias=true:hinting=true
+yeahconsole*consoleHeight: 35
+yeahconsole*toggleKey: none+Menu
+
+! Its behaviour is
+!yeahconsole*restart: 1
+
+! misc term features
+yeahconsole*loginShell: false
+yeahconsole*savelines: 10000
+yeahconsole*toolBar: true
+yeahconsole*aniDelay: 0
+
+yeahconsole*perl-ext-common: default,digital-clock,remote-clipboard,matcher
+yeahconsole*urlLauncher: sensible-browser
+yeahconsole*matcher.button: 1
+yeahconsole*matcher.pattern.1: \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+! yeahconsole*
+
+yeahconsole*rightScrollBar: True
+yeahconsole*scrollBar: True
+yeahconsole*scrollBar_right: True
+yeahconsole*scrollBar_floating: True
+yeahconsole*scrollstyle: xterm
+yeahconsole*saveLines: 4000
+!yeahconsole*font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-1
+!yeahconsole*boldFont: -*-terminus-bold-r-normal-*-14-*-*-*-*-*-iso10646-1
+yeahconsole*foreground: green
+yeahconsole*cursorColor: green
+yeahconsole*background: black
+yeahconsole*geometry: 105x35
+yeahconsole*scrollColor: green
+yeahconsole*cursorBlink: False
+
+
+!цвет фона
+yeahconsole*background:#262626
+!цвет текста
+yeahconsole*foreground:#E6E3E6
+!цвет курсора
+!yeahconsole*cursorColor:#E6E3E6
+!автоматический перезапуск при выходе
+!yeahconsole*restart:1
+!хоткей для разворачивания на весь экран
+!yeahconsole*keyFull:None+F11
+!хоткеи дли изменения размера (минус и плюс на NumLockе)
+yeahconsole*keySmaller:Control+KP_Subtract
+yeahconsole*keyBigger:Control+KP_Add
+yeahconsole*faceName: Monaco:size=10
+yeahconsole*boldFont: Monaco:style=Normal:size=10
+!обрабатываем Esc по человечески
+!yeahconsole*metaSendsEscape: true

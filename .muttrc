@@ -1,0 +1,489 @@
+#~/.muttrc
+# Setting
+set header_cache=~/Mail/cache
+set spoolfile=~/Mail/inbox# incoming mails (~/Mail/inbox)
+set mbox="~/Mail/inbox"
+set mbox_type=mbox
+set postponed="~/Mail/draft"
+set move=yes      # yes (move read mails automatically to $mbox)
+set timeout=10    # mutt 'presses' (like) a key for you (while you're idle)
+                  # each x sec to trigger the thing below
+set mail_check=5  # mutt checks for new mails on every keystroke
+                  # but not more often then once in 5 seconds
+set beep_new      # beep on new messages in the mailboxes
+
+set query_command="abook --mutt-query '%s'"  # address book
+set alias_file=~/.mutt/aliases     # aliases-file is there
+source ~/.mutt/aliases             # and include all existing aliases
+#macro editor ";" \Ct               # bin ; to  Ctrl-t in editor-mode (easier IMHO)
+
+set pager_context=8
+set pager_index_lines=16
+#set menu_scroll
+set sort=date-received
+#set pager_stop
+set editor="vim"
+set send_charset="us-ascii:iso-8859-1:koi8-r:windows-1251:utf-8"
+set visual="vim"
+set charset=UTF-8//TRANSLIT
+set config_charset=utf-8
+set signature="iconv -f utf-8 ~/.signature |"
+set locale=`echo "${LC_ALL:-${LC_TIME:-${LANG}}}"`
+#set charset=iso-8859-1//TRANSLIT
+
+#set status at the top
+set status_on_top
+#set status_format=" %r %b %f %n Del %d Msgs %m %l %> (%P)"
+set status_format="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+set pager_format="%-10.10i %[!%a %b %d %R]"
+set date_format="!%H:%M %a %d %b "
+set index_format="%4C %Z %[%b%d] %-15.15F %s"
+set folder_format="%2C %t %8s %d %N %f"
+
+set sendmail="/usr/bin/msmtp -t"     #тут крайне важно указать правильный путь к "msmtp", и без ключа "-t" работать не будет
+set use_from=yes
+set from="vs@webdirect.md"  #можно и заремить, ибо есть записи в "~/.msmtprc"
+set envelope_from=yes
+set realname="Vasilii Pascal"
+
+set record="$HOME/Mail/sent"     #сохранять отправленную почту здесь
+set delete=yes     #удалить без подтверждения
+set include=yes     #выделять сообщение в ответе
+set fast_reply=yes     #не подтверждать ответ
+set beep=no     #не пищать
+set markers=no     #не помечать + сложенные строки
+set confirmappend=no     #не подтверждать сохранение в =keep
+set to_chars=" +TCF"     #нет L для mail_list
+set folder="$HOME/Mail"
+
+
+#it sometimes funny, i'm working with mutt since about 10years, (the 5years before i was using elm) and just found out how i can view pure text/html-Mails without fiddeling with piping and things.
+
+set implicit_autoview
+
+#in .muttrc does the trick.
+
+#but now mutt also prefers the text/html-part of multipart/alternative-mails, this is going to far for me. i want the text/plain-part if available. mutt has also a solution here:
+alternative_order text/plain text/html text/enriched
+
+#commented next and pasted a new block after next line
+# View html mails using lynx
+set implicit_autoview
+auto_view text/html  application/x-pgp-message
+set mailcap_path="~/.mailcap"
+set mailcap_sanitize=yes
+#
+#and done. no more piping to html2text. One day i'll read through the whole manual again...
+# new block end
+mailboxes ! + `\
+ for file in ~/Mail/.*; do \
+   box=$(basename "$file"); \
+   if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
+       -a ! "$box" = '.subscriptions' ]; then \
+     echo -n "\"+$box\" "; \
+   fi; \
+ done`
+
+# move 1/2 page up/down like in vi
+#bind generic \Cu    half-up
+bind generic ë  half-up
+bind generic ê  half-down
+#bind pager   \Cu    half-up
+#bind pager   \Cd    half-down
+bind pager ë  half-up
+bind pager ê  half-down
+bind generic  h    previous-page
+bind generic \Cb    previous-page
+bind generic \Cf    next-page
+bind generic   1G   first-entry
+bind generic   1g   first-entry
+bind generic <Home> first-entry
+bind generic \Ca    first-entry
+bind generic   G    last-entry
+bind generic <End>  last-entry
+bind generic \Ce    last-entry
+
+bind pager   \eD    delete-thread
+bind pager   \eU    undelete-thread
+# ^U and ^D were bound otherwise, so bind it now again to something else
+bind pager \Ca      top
+bind pager g       top
+bind pager  1G      top
+bind pager  1g      top
+bind pager \Ce      bottom
+bind pager <End>    bottom
+bind pager   G      bottom
+bind pager   q      exit
+bind pager <Left>   exit
+bind pager   i      noop
+bind pager   B      bounce-message
+bind pager   h      previous-page
+bind pager \Ch      previous-page
+bind pager \Cl      next-page
+bind pager  k     previous-line
+bind pager  <esc>k     previous-line
+bind pager  <esc>j   next-line
+bind pager  j   next-line
+bind pager <Insert> previous-entry
+bind pager <Delete> next-entry
+
+bind index \eD     delete-thread
+bind index \eU     undelete-thread
+# ^U and ^D were bound otherwise, so bind it now again to something else
+bind index   B     bounce-message
+bind index \ef     forget-passphrase
+bind index \Ch     previous-page
+bind index \Cl     next-page
+bind index  k       previous-entry
+bind index  <esc>k       previous-entry
+bind index  <esc>j       next-entry
+bind index  j       next-entry
+bind index <enter> display-message
+bind index g  first-entry
+bind index <End>   last-entry
+bind index   1G    first-entry
+bind index   1g    first-entry
+bind index \Ca     first-entry
+bind index   G     last-entry
+bind index \Ce     last-entry
+
+bind alias <Tab> next-entry
+
+bind browser <Right> select-entry
+bind browser l select-entry
+bind browser h change-dir
+
+#запуск fetchmail нажатием кнопки o
+macro index L "!fetchmail -av -m '/usr/bin/procmail -d %T'" # get mail
+macro pager L "!fetchmail -av -m '/usr/bin/procmail -d %T'" # get mail
+macro index <F7> "!nmzmail"# search mail
+macro index <F12> "!fetchmail -av -m '/usr/bin/procmail -d %T'"<enter> # get mail
+macro pager <F12> "!fetchmail -av -m '/usr/bin/procmail -d %T'" # get mail
+macro index \Cr "T.\n;WN^T.\n" "Mark all messages as read"
+#
+#
+#
+#
+#
+#
+#
+#
+# What headers to show
+ignore *
+unignore from: date subject to cc reply-to x-mailer x-url user-agent x-recent recent-
+
+# What order to show them
+unhdr_order *
+hdr_order Date: From: To: Reply-To: Cc: Subject:
+
+# The chosen color selection
+# 8- dark grey (mark as read)
+# 7- light grey
+# 34 - green
+# 111 - blue
+# 110 - nice violet
+# 124 - red
+# 142 - orange
+# 193 - tan// light green
+# 233 - black
+
+# general-doesn't-fit stuff
+# foreground background
+color normal color7 color233
+color error color193 color124
+color markers color142 color233
+color tilde color142 color233
+color status color142 color233
+
+# index stuff
+color tree color124 color233
+
+#color indicator color233 color193
+color indicator color233 color8
+
+#viewed messages
+color index color8 color233 ~A
+
+#new messages
+color index color34 color233 ~N
+#color index color34 color233 ~O
+
+color index color7 color233 ~O
+
+color index color124 color233 ~F
+
+# header stuff
+color hdrdefault color124 color233
+
+#color header color111 color233 "^Subject"
+color header color8 color233 "^Subject"
+
+# gpg stuff
+color body color34 color233 "^gpg: Good signature.*"
+color body color193 color124 "^gpg: BAD signature.*"
+color body color142 color233 "^gpg: Can't check signature.*"
+color body color142 color233 "^-----BEGIN PGP SIGNED MESSAGE-----"
+color body color142 color233 "^-----BEGIN PGP SIGNATURE-----"
+color body color142 color233 "^-----END PGP SIGNED MESSAGE-----"
+color body color142 color233 "^-----END PGP SIGNATURE-----"
+color body color142 color233 "^Version: GnuPG.*"
+color body color142 color233 "^Comment: .*"
+#color body color142 color233 "^[[:alnum:]/\+=]+[[:space:]]+$"
+
+
+# url, email and web stuff
+color body color111 color233 "(finger|ftp|http|https|news|telnet)://[^ >]*"
+color body color111 color233 "<URL:[^ ]*>"
+color body color111 color233 "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body color111 color233 "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
+color body color111 color233 "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+# misc body stuff
+color attachment color34 color233
+color signature color142 color233
+
+# quote levels
+color quoted color34 color233
+color quoted1 color142 color233
+color quoted2 color34 color233
+color quoted3 color142 color233
+color quoted4 color34 color233
+color quoted5 color142 color233
+color quoted6 color34 color233
+color quoted7 color142 color233
+color quoted8 color34 color233
+color quoted9 color142 color233
+
+## Mail message preview colors
+#color attachment blue default
+color header color8 default "^message-id:"
+color header color8 default "^x-mailer:"
+color header color8 default "^x-mailer-version:"
+color header color8 default "^user-agent:"
+color header color8 default "^date: "
+#
+color header brightblue default "^from: "
+#color header green default "^subject: "
+color header color8 default "^subject: "
+#color header brightblue default "^to: "
+color header color8 default "^to: "
+
+color header color8 default "^cc: "
+color header color8 default "^reply-to: "
+
+color index blue default ~F
+#deleted
+color index red color233 ~D
+
+color index blue default ~T
+
+#new mail
+#color index brightblue black ~N
+color index color193 color233 ~N
+
+#color indicator brightwhite lightblue
+
+color markers red default
+
+color quoted magenta default
+
+color signature brightblue default
+
+color status black color7
+
+color tilde cyan default
+
+color tree blue default
+
+#color body black default "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"
+color body default green "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"
+
+# Command formats for gpg.
+#
+# This version uses gpg-2comp from
+# http://muppet.faveve.uni-stuttgart.de/~gero/gpg-2comp.tar.gz
+#
+# $Id: gpg.rc,v 3.1 2002/03/26 22:23:58 roessler Exp $
+#
+# %p The empty string when no passphrase is needed,
+# the string "PGPPASSFD=0" if one is needed.
+#
+# This is mostly used in conditional % sequences.
+#
+# %f Most PGP commands operate on a single file or a file
+# containing a message. %f expands to this file's name.
+#
+# %s When verifying signatures, there is another temporary file
+# containing the detached signature. %s expands to this
+# file's name.
+#
+# %a In "signing" contexts, this expands to the value of the
+# configuration variable $pgp_sign_as. You probably need to
+# use this within a conditional % sequence.
+#
+# %r In many contexts, mutt passes key IDs to pgp. %r expands to
+# a list of key IDs.
+
+# Note that we explicitly set the comment armor header since GnuPG, when used
+# in some localiaztion environments, generates 8bit data in that header, thereby
+# breaking PGP/MIME.
+
+# decode application/pgp
+set pgp_decode_command="/usr/bin/gpg --charset utf-8 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+
+# verify a pgp/mime signature
+set pgp_verify_command="/usr/bin/gpg --no-verbose --quiet --batch --output - --verify %s %f"
+
+# decrypt a pgp/mime attachment
+set pgp_decrypt_command="/usr/bin/gpg --passphrase-fd 0 --no-verbose --quiet --batch --output - %f"
+
+# create a pgp/mime signed attachment
+# set pgp_sign_command="/usr/bin/gpg-2comp --comment '' --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_sign_command="/usr/bin/gpg --no-verbose --batch --quiet --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+
+# create a application/pgp signed (old-style) message
+# set pgp_clearsign_command="/usr/bin/gpg-2comp --comment '' --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_clearsign_command="/usr/bin/gpg --charset utf-8 --no-verbose --batch --quiet --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+
+# create a pgp/mime encrypted attachment
+# set pgp_encrypt_only_command="pgpewrap gpg-2comp -v --batch --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_only_command="pgpewrap /usr/bin/gpg --charset utf-8 --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+
+# create a pgp/mime encrypted and signed attachment
+# set pgp_encrypt_sign_command="pgpewrap gpg-2comp --passphrase-fd 0 -v --batch --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_sign_command="pgpewrap /usr/bin/gpg --charset utf-8 --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+
+# import a key into the public key ring
+set pgp_import_command="/usr/bin/gpg --no-verbose --import -v %f"
+
+# export a key from the public key ring
+set pgp_export_command="/usr/bin/gpg --no-verbose --export --armor %r"
+
+# verify a key
+set pgp_verify_key_command="/usr/bin/gpg --verbose --batch --fingerprint --check-sigs %r"
+
+# read in the public key ring
+set pgp_list_pubring_command="/usr/bin/gpg --no-verbose --batch --quiet --with-colons --list-keys %r"
+
+# read in the secret key ring
+set pgp_list_secring_command="/usr/bin/gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
+
+# fetch keys
+# set pgp_getkeys_command="pkspxycwrap %r"
+
+# pattern for good signature - may need to be adapted to locale!
+
+set pgp_good_sign="^gpg: Good signature from"
+
+# OK, here's a version which uses gnupg's message catalog:
+# set pgp_good_sign="`gettext -d gnupg -s 'Good signature from "' | tr -d '"'`"
+#EOF
+
+
+#------------------Orange theme-------------------------------
+#
+#color attachment brightmagenta black
+#color error brightwhite red   # errors yell at you in red
+#color hdrdefault red black   # headers
+#color indicator brightyellow magenta # currently selected message
+#color markers brightcyan black  # the + for wrapped pager lines
+#color message brightcyan black  # informational messages, not mail
+#color normal white black    # plain text
+#color quoted green black  # quoted text
+#color search brightgreen black # hilite search patterns in the pager
+#color signature red black    # signature (after "-- ") is red
+#color status brightyellow blue # status bar is yellow *on blue*
+#color tilde blue black  # ~'s after message body
+#color tree red black    # thread tree in index menu is magenta
+#color signature brightred black
+#color underline yellow black
+#color header cyan black ^(From|Subject): # Important headers
+#color body magenta black "(ftp|http)://[^ ]+"  # picks up URLs
+#color body magenta black [-a-z_0-9.]+@[-a-z_0-9.]+
+
+##  Coloring quoted text - coloring the first 7 levels:
+#color quoted    cyan black
+#color quoted1   yellow black
+#color quoted2   red black
+#color quoted3   green black
+#color quoted4   cyan black
+#color quoted5   yellow black
+#color quoted6   red black
+#color quoted7   green black
+
+##  Colorize smileys:  :-)  ;-)  :-/  :-(
+#color body  yellow black "[;:]-[)/(|]"
+#color body  yellow black "[;:][)/(|]"
+#color body  green black "[[:alpha:]]\+://[^ ]*"
+
+#color index brightyellow black ~N      # New
+#color index yellow black ~O              # Old
+#color index magenta black ~F
+#color index blue black ~T
+#color index red black ~D
+#------------------Orange theme end -------------------------------
+#
+#
+#
+
+
+
+
+
+
+
+#------------------White theme start -------------------------------
+# Default color definitions - assumes light background
+#color normal        black        default
+#color quoted        color65        default
+#color quoted1        color138    default
+#color quoted2        color58        default
+#color quoted3        color105    default
+#color quoted4        cyan        default
+#color quoted5        cyan        default
+
+#color indicator        black        color249
+#color message        green        default
+#color status        color139 color254
+#color error         color58 default
+#color attachment    black        default
+#color signature        color253    default
+#color markers        red         yellow
+#color tilde        black        default
+#color search       black        green
+#color tree         black        default
+#color bold         blue        default
+
+#color hdrdefault    black   default
+#color header        green   default    '^From:'
+#color header        green   default    '^Subject:'
+#color header        cyan    default    '^To:.*'
+
+## Colors for items in the index
+##color index        color22        default    ~N
+##color index blue     default    ~N
+##color index blue     default    ~F
+##color index color55  default    ~T
+##color index color58 black ~D
+##  Colorize smileys:  :-)  ;-)  :-/  :-(
+#color body  yellow black "[;:]-[)/(|]"
+#color body  yellow black "[;:][)/(|]"
+#color body  green black "[[:alpha:]]\+://[^ ]*"
+
+#color index blue white ~N      # New
+#color index yellow white ~O              # Old
+#color index magenta white ~F
+#color index green white ~T
+#color index color124 white ~D
+
+## Highlights inside the body of a message.
+
+## URLs
+#color body        color22        default    "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+#color body        color22        default    "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+#color body        color22        default    "news:[^ \">\t\r\n]*"
+
+## email addresses
+#color body        green        default    "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+##------------------White theme end -------------------------------
+

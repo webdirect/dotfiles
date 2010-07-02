@@ -1,0 +1,80 @@
+xterm*altSendsEscape: false
+xterm*eightBitInput:   true
+xterm*eightBitOutput:  false
+xterm*utf8: 1
+!xterm*faceName: Liberation Mono
+!xterm*faceName: Monaco
+xterm*faceName: Droid Sans Mono
+xterm*faceSize: 9
+xterm*loginShell: false
+xterm*geometry: 128x39+0+23
+xterm*allowSendEvents: True
+xterm*sessionMgt: false
+!last comment
+*VT100.Translations: #override \
+			  <Key>BackSpace: string(0x7F)\n\
+			  <Key>Delete:    string("\033[3~")\n\
+			  <Key>Home:      string("\033[1~")\n\
+			  <Key>End:       string("\033[4~")
+*ttyModes: erase ^?
+xterm.VT100.cursorColor: LightSlateGreen
+xterm*background:  #ffffff
+xterm*foreground:  #000000
+xterm*color0:      #000000
+! fire red
+xterm*color1:      #D22717
+! salad green
+!xterm*color2:      #80CE68
+xterm*color2:      #80CE68
+!previous brown now a little bit orange
+!xterm*color3:      #E67109
+xterm*color3:      #FC9503
+! base blue
+!xterm*color4:      #4169A1
+xterm*color4:      #ffffff
+! strawberry symlinks
+xterm*color5:      #963c59
+!Dark ocean changed to light ocean
+!(olive)
+!xterm*color6:      #418179
+!xterm*color6:      #599FA3
+xterm*color6:      #82BEC0
+!
+xterm*color7:      #bebebe
+xterm*color8:      #666666
+! Dark pink
+xterm*color9:      #cf6171
+!was lemon changed to middle green
+xterm*color10:     #6FBF35
+!light yellow
+xterm*color11:     #fff796
+! Beautefull heaven blue
+xterm*color12:     #4186be
+!purple pink
+xterm*color13:     #cf9ebe
+! cyan
+xterm*color14:     #71bebe
+!xterm*color15:     #ffffff
+xterm*color15:     #333333
+!
+!Yet another theme
+!XTerm*background: #000010
+!XTerm*foreground: #ffffff
+!XTerm*color0: #000000
+!XTerm*color1: #9e1828
+!XTerm*color2: #aece92
+!XTerm*color3: #968a38
+!XTerm*color4: #414171
+!XTerm*color5: #963c59
+!XTerm*color6: #418179
+!XTerm*color7: #bebebe
+!XTerm*color8: #666666
+!XTerm*color9: #cf6171
+!XTerm*color10: #c5f779
+!XTerm*color11: #fff796
+!XTerm*color12: #4186be
+!XTerm*color13: #cf9ebe
+!XTerm*color14: #71bebe
+!XTerm*color15: #ffffff
+!XTerm*cursorColor: magenta
+
