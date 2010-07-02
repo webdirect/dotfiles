@@ -42,9 +42,9 @@ set folder_format="%2C %t %8s %d %N %f"
 
 set sendmail="/usr/bin/msmtp -t"     #тут крайне важно указать правильный путь к "msmtp", и без ключа "-t" работать не будет
 set use_from=yes
-set from="vs@webdirect.md"  #можно и заремить, ибо есть записи в "~/.msmtprc"
+set from="user@host.com"  #можно и заремить, ибо есть записи в "~/.msmtprc"
 set envelope_from=yes
-set realname="Vasilii Pascal"
+set realname="Your Name"
 
 set record="$HOME/Mail/sent"     #сохранять отправленную почту здесь
 set delete=yes     #удалить без подтверждения
